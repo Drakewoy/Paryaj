@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>matchServlet</servlet-name>
+        <servlet-class>controleur.matchServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>paiementServlet</servlet-name>
+        <servlet-class>controleur.paiementServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>compteServlet</servlet-name>
+        <servlet-class>controleur.compteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>pariageServlet</servlet-name>
+        <servlet-class>controleur.pariageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>matchServlet</servlet-name>
+        <url-pattern>/matchServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>paiementServlet</servlet-name>
+        <url-pattern>/paiementServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>compteServlet</servlet-name>
+        <url-pattern>/compteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>pariageServlet</servlet-name>
+        <url-pattern>/pariageServlet</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
