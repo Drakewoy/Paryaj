@@ -35,7 +35,7 @@ public class CompteModel {
         this.lDn = lDn;
         this.dDn = dDn;
         this.tel = tel;
-        this.nifOuCin = nifOuCin;
+        this.nifOuCin = nifOuCin;   
         this.n_utilisateur = n_utilisateur;
         this.motDePass = motDePass;
         this.solde = solde;
