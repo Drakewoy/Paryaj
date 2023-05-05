@@ -4,19 +4,26 @@
  */
 package controleur;
 
+import dao.CompteDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.CompteModel;
+
 
 /**
  *
  * @author user
  */
 public class compteServlet extends HttpServlet {
-
+CompteModel cm =  new CompteModel();
+CompteDao cdao =new CompteDao();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -69,7 +76,7 @@ public class compteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+    enregistrer(request, response);
     }
 
     /**
@@ -81,5 +88,27 @@ public class compteServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    
+    
+protected void enregistrer(HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
+    try {
+    cm.setNom(request.getParameter("nom"));
+    cm.setPrenom(request.getParameter("prenom"));
+    cm.setSexe(request.getParameter("sexe"));
+    cm.setAdresse(request.getParameter("adresse"));
+    cm.setlDn(request.getParameter("lDn"));
+    cm.setdDn(request.getParameter("dN"));
+    cm.setTel(request.getParameter("tel"));
+    cm.setNifOuCin(request.getParameter("nifOuCin"));
+    cm.setN_utilisateur(request.getParameter("utilisateur"));
+    cm.setMotDePass(request.getParameter("password"));
+    cm.setSolde(Double.parseDouble(request.getParameter("solde")));
+    cm.setEtat(request.getParameter("etat"));
+        cdao.enregistrer(cm);
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(compteServlet.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+        Logger.getLogger(compteServlet.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
 }

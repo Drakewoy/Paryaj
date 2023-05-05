@@ -19,10 +19,10 @@ public class DBconnection {
     static Connection con = null;
 
     //etablir la connection a la base
-    public static Connection Connect() throws ClassNotFoundException, SQLException {
+    public static Connection connect() throws ClassNotFoundException, SQLException {
         //charge le pilote de la base de donnee
         Class.forName("com.mysql.cj.jdbc.Driver");
-        String url = "jdbc:mysql://localhost:3306/paryaj";
+        String url = "jdbc:mysql://localhost:3306/paryaj_spotif";
         con = DriverManager.getConnection(url, "root", "");
         return con;
     }

@@ -18,7 +18,7 @@ public class CompteModel {
     private String lDn;
     private String dDn;
     private String tel;
-    private String nifOuSin;
+    private String nifOuCin;
     private String n_utilisateur;
     private String motDePass;
     private Double solde;
@@ -26,7 +26,7 @@ public class CompteModel {
     // Les constructeurs
     public CompteModel(){}
 
-    public CompteModel(String id, String nom, String prenom, String sexe, String adresse, String lDn, String dDn, String tel, String nifOuSin, String n_utilisateur, String motDePass, Double solde, String etat) {
+    public CompteModel(String id, String nom, String prenom, String sexe, String adresse, String lDn, String dDn, String tel, String nifOuCin, String n_utilisateur, String motDePass, Double solde, String etat) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -35,7 +35,7 @@ public class CompteModel {
         this.lDn = lDn;
         this.dDn = dDn;
         this.tel = tel;
-        this.nifOuSin = nifOuSin;
+        this.nifOuCin = nifOuCin;
         this.n_utilisateur = n_utilisateur;
         this.motDePass = motDePass;
         this.solde = solde;
@@ -76,8 +76,8 @@ public class CompteModel {
         return tel;
     }
 
-    public String getNifOuSin() {
-        return nifOuSin;
+    public String getNifOuCin() {
+        return nifOuCin;
     }
 
     public String getN_utilisateur() {
@@ -130,8 +130,8 @@ public class CompteModel {
         this.tel = tel;
     }
 
-    public void setNifOuSin(String nifOuSin) {
-        this.nifOuSin = nifOuSin;
+    public void setNifOuCin(String nifOuSin) {
+        this.nifOuCin = nifOuSin;
     }
 
     public void setN_utilisateur(String n_utilisateur) {

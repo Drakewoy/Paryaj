@@ -52,3 +52,4 @@ ALTER TABLE pariages ADD CONSTRAINT fk_CODE FOREIGN KEY (ID_Compte) REFERENCES g
 Alter table paiements add constraint fk_id_pariage foreign key(id_pariage) references pariages(id);
 
 
+Alter TABLE pariages Drop FOREIGN key fk_CODE;
