@@ -1,17 +1,17 @@
-<%-- 
-    Document   : header
-    Created on : May 2, 2023, 8:56:32 PM
-    Author     : user
---%>
+<ul>
+           
+            <a href="${pageContext.request.contextPath}/matchServlet">
+                <li>Matches</li>
+            </a>
+            <a href="${pageContext.request.contextPath}/pariageServlet">
+                <li>Pariage</li>
+            </a>
+            <a href="${pageContext.request.contextPath}/paiementServlet">
+                <li>Paiements</li>
+            </a>
+            <a href="${pageContext.request.contextPath}/compteServlet">
+                <li>Comptes</li>
+            </a>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+        </ul>
+

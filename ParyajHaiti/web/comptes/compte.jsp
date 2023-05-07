@@ -4,6 +4,8 @@
     Author     : user
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="models.CompteModel"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,14 +14,33 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Connectez-vous</h1>
-        <form action="" method="post">
+        <%@include file="../layouts/header.jsp" %>
+        <h1>Information du compte</h1>
 
-            <input type="text" placeholder="Nom_Utilisateur">
-            <input type="text" placeholder="Mot de pass">
-            <button type="submit">Connecter</button>
-            <a href="creerCompte.jsp">Inscrivez-vous</a>
+        <ul>
+               <li>Liste----</li>
+            <% ArrayList<CompteModel> liste = (ArrayList<CompteModel>) session.getAttribute("data");
+            if(liste != null){
+            if(!liste.isEmpty()){
+                for(CompteModel cm: liste){   
+            %>
+         
+            <li><%=cm.getId()%></li>
+            <li><%=cm.getNom()%></li>
+            <li><%=cm.getPrenom()%></li>
+            <li><%=cm.getSexe()%></li>
+            <li><%=cm.getAdresse()%></li>
+            <li><%=cm.getlDn()%></li>
+            <li><%=cm.getdDn()%></li>
+            <li><%=cm.getTel()%></li>
+            <li><%=cm.getNifOuCin()%></li>
+            <li><%=cm.getN_utilisateur()%></li>
+            <li><%=cm.getMotDePass()%></li>
+            <li><%=cm.getSolde()%></li>
+            <li><%=cm.getEtat()%></li>
+            <%}}}%>
+        </ul>
 
-        </form>
+
     </body>
 </html>

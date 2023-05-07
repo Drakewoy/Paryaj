@@ -12,6 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%@include file="../header.jsp" %>
         <h1>Inscription</h1>
 
         <form action="${pageContext.request.contextPath}/compteServlet" method="post">

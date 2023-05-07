@@ -8,22 +8,28 @@ import dao.CompteDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import models.CompteModel;
-
 
 /**
  *
  * @author user
  */
 public class compteServlet extends HttpServlet {
-CompteModel cm =  new CompteModel();
-CompteDao cdao =new CompteDao();
+
+    static final String compte = "comptes/compte.jsp";
+// static final String 
+
+    CompteModel cm = new CompteModel();
+    CompteDao cdao = new CompteDao();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,7 +47,7 @@ CompteDao cdao =new CompteDao();
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet compteServlet</title>");            
+            out.println("<title>Servlet compteServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet compteServlet at " + request.getContextPath() + "</h1>");
@@ -62,7 +68,7 @@ CompteDao cdao =new CompteDao();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        lister(request, response);
     }
 
     /**
@@ -76,7 +82,7 @@ CompteDao cdao =new CompteDao();
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    enregistrer(request, response);
+        enregistrer(request, response);
     }
 
     /**
@@ -88,27 +94,41 @@ CompteDao cdao =new CompteDao();
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
-    
-protected void enregistrer(HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
-    try {
-    cm.setNom(request.getParameter("nom"));
-    cm.setPrenom(request.getParameter("prenom"));
-    cm.setSexe(request.getParameter("sexe"));
-    cm.setAdresse(request.getParameter("adresse"));
-    cm.setlDn(request.getParameter("lDn"));
-    cm.setdDn(request.getParameter("dN"));
-    cm.setTel(request.getParameter("tel"));
-    cm.setNifOuCin(request.getParameter("nifOuCin"));
-    cm.setN_utilisateur(request.getParameter("utilisateur"));
-    cm.setMotDePass(request.getParameter("password"));
-    cm.setSolde(Double.parseDouble(request.getParameter("solde")));
-    cm.setEtat(request.getParameter("etat"));
-        cdao.enregistrer(cm);
-    } catch (ClassNotFoundException ex) {
-        Logger.getLogger(compteServlet.class.getName()).log(Level.SEVERE, null, ex);
-    } catch (SQLException ex) {
-        Logger.getLogger(compteServlet.class.getName()).log(Level.SEVERE, null, ex);
+
+    protected void enregistrer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            cm.setNom(request.getParameter("nom"));
+            cm.setPrenom(request.getParameter("prenom"));
+            cm.setSexe(request.getParameter("sexe"));
+            cm.setAdresse(request.getParameter("adresse"));
+            cm.setlDn(request.getParameter("lDn"));
+            cm.setdDn(request.getParameter("dN"));
+            cm.setTel(request.getParameter("tel"));
+            cm.setNifOuCin(request.getParameter("nifOuCin"));
+            cm.setN_utilisateur(request.getParameter("utilisateur"));
+            cm.setMotDePass(request.getParameter("password"));
+            cm.setSolde(Double.parseDouble(request.getParameter("solde")));
+            cm.setEtat(request.getParameter("etat"));
+            cdao.enregistrer(cm);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(compteServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(compteServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-}
+
+    protected void lister(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        try {
+            ArrayList<CompteModel> list = cdao.afficher();
+            HttpSession session = request.getSession();
+            session.setAttribute("data", list);
+            response.sendRedirect(compte);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(compteServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(compteServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }

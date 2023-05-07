@@ -48,7 +48,7 @@ public class CompteDao implements Iservices<CompteModel> {
         ps.setString(11, obj.getMotDePass());
         ps.setDouble(12, obj.getSolde());
         ps.setString(13, obj.getEtat());
-        
+
         int n = ps.executeUpdate();
         DBconnection.close(rs, ps, con);
         return n;
@@ -76,11 +76,36 @@ public class CompteDao implements Iservices<CompteModel> {
 
     @Override
     public ArrayList<CompteModel> afficher() throws ClassNotFoundException, SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ArrayList<CompteModel> liste = new ArrayList();
+        CompteModel cm = null;
+        // la requete 
+        String sql = "SELECT * FROM g_comptes";
+        // Recuperer la connection
+        con = DBconnection.connect();
+        //Passage de la requete dynamique
+        ps = con.prepareStatement(sql);
+        //executer la requete
+        rs = ps.executeQuery();
+        // iteration de la base
+        while(rs.next()){
+            cm = new CompteModel();
+            cm.setId(rs.getString(1));
+            cm.setNom(rs.getString(2));
+            cm.setPrenom(rs.getString(3));
+            cm.setSexe(rs.getString(4));
+            cm.setAdresse(rs.getString(5));
+            cm.setlDn(rs.getString(6));
+            cm.setdDn(rs.getString(7));
+            cm.setTel(rs.getString(8));
+            cm.setNifOuCin(rs.getString(9));
+            cm.setN_utilisateur(rs.getString(10));
+            cm.setMotDePass(rs.getString(11));
+            cm.setSolde(rs.getDouble(12));
+            cm.setEtat(rs.getString(13));
+            liste.add(cm);
+        }
+        DBconnection.close(rs, ps, con);
+        return liste;
     }
-
-   
-
-
 
 }
